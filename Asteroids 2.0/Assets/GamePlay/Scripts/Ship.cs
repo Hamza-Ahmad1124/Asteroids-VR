@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Ship : MonoBehaviour 
 {
-	public float movementSpeed = 100f;
+	public float movementSpeed = 250f;
 	public float turnSpeed = 50f;
 	public float health = 5f;
 	private float startHealth;
@@ -72,8 +72,6 @@ public class Ship : MonoBehaviour
 
 		healthBar.fillAmount = health / startHealth;
 
-		Debug.Log (health.ToString ());
-
 		if (health <= 0f)
 		{
 			GameObject finalExplosion = (GameObject)Instantiate (shipExplosion);
@@ -95,8 +93,6 @@ public class Ship : MonoBehaviour
 	{
 		if (collision.transform.tag == "Target")
 		{
-			Debug.Log (collision.transform.name);
-
 			if (isHit)
 			{
 				return;

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Asteroid : MonoBehaviour 
 {
 	public float movementSpeed = 1f;
-	public float minimumDistance = 800f;
-	public float minimumHeight = 800f;
+	public float minimumDistance = 400f;
+	public float minimumHeight = 400f;
 	public float rotatingSpeed = 15f;
 	public int health = 2;
 

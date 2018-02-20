@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class AsteroidController : MonoBehaviour
 {
-	public int numberOfAsteroids = 10;
+	public int numberOfAsteroids = 20;
 
 	private ObjectPool asteroidPool;
 
