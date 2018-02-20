@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4677439053911660}
   - component: {fileID: 114964992363603544}
-  - component: {fileID: 54022444621131106}
   - component: {fileID: 135777603421640406}
+  - component: {fileID: 54005969151164814}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Target
@@ -188,7 +188,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1951342086207094}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54022444621131106
+--- !u!54 &54005969151164814
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -245,9 +245,6 @@ MonoBehaviour:
   rotationSelection: 0
   directions: {x: 0, y: 0, z: 0}
   health: 2
-  asteroidPrefab: {fileID: 1526896397395030}
-  explosionPrefab: {fileID: 1774229582244652, guid: 6f8cb56c26198ac41a2b1c05c9047e1c,
-    type: 2}
 --- !u!135 &135777603421640406
 SphereCollider:
   m_ObjectHideFlags: 1

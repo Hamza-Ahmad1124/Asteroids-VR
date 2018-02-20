@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour 
 {
@@ -63,13 +62,5 @@ public class Player : MonoBehaviour
 		Vector3 vectorPosition = new Vector3 (Xposition, Yposition, Zposition);
 
 		parentObject.position = vectorPosition;
-	}
-
-	void OnTriggerEnter(Collider collider)
-	{
-		if (collider.transform.tag == "Target")
-		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
 	}
 }

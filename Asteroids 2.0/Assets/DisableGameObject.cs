@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisableGameObject : MonoBehaviour {
 
-	public float lifeTime = 4f;
+	public float lifeTime = 3f;
 
 	void Start () 
 	{

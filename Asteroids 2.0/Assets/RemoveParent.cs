@@ -15,12 +15,12 @@ public class RemoveParent : MonoBehaviour {
 		{
 			parentPosition = this.gameObject.transform.parent.position;
 
-			if (  (parentPosition.x >= 90)
-				||(parentPosition.x <= -90)
-				||(parentPosition.y >= 90)
-				||(parentPosition.y <= -90)
-				||(parentPosition.z >= 90)
-				||(parentPosition.z <= -90))
+			if (  (parentPosition.x >= 95)
+				||(parentPosition.x <= -95)
+				||(parentPosition.y >= 95)
+				||(parentPosition.y <= -95)
+				||(parentPosition.z >= 95)
+				||(parentPosition.z <= -95))
 			{
 				this.gameObject.transform.parent = null;
 			}
