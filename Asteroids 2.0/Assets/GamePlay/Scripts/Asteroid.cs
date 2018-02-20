@@ -130,7 +130,7 @@ public class Asteroid : MonoBehaviour
 	void startMoving()
 	{
 		//GetComponent<Rigidbody>().AddForce(directions,);
-		transform.position += directions;
+		transform.position += directions * Time.deltaTime * 20;
 	}
 
 	public void Hit()
