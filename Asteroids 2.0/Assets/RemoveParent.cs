@@ -6,16 +6,11 @@ public class RemoveParent : MonoBehaviour {
 
 	private Vector3 parentPosition;
 
-	// Use this for initialization
 	void Start () 
-	{
-		
-	}
+	{}
 	
-	// Update is called once per frame
 	void Update () 
 	{
-
 		if (this.gameObject.transform.parent != null)
 		{
 			parentPosition = this.gameObject.transform.parent.position;

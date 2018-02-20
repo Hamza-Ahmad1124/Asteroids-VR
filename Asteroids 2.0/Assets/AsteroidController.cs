@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidController : MonoBehaviour 
+public class AsteroidController : MonoBehaviour
 {
-	public GameObject asteroidPrefab;
-	public int numberOfAsteroids = 15;
+	public int numberOfAsteroids = 10;
 
-	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
+		ObjectPool asteroidPool = this.GetComponent<ObjectPool>();
+
 		for (int i = 0; i < numberOfAsteroids; i++)
 		{
-			GameObject asteroidObject = Instantiate (asteroidPrefab);
+			GameObject asteroidObject = asteroidPool.getPooledObject();
 			asteroidObject.transform.SetParent (this.transform);
+			asteroidObject.SetActive (true);
 		}
 	}
 	
-	// Update is called once per frame
 	void Update () 
-	{
-
-	}
+	{}
 }

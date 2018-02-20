@@ -8,10 +8,8 @@ public class Bullet : MonoBehaviour
 	public float speed = 100f;
 	public float lifeTime = 10f;
 
-	// Use this for initialization
 	void Start ()
 	{
-		//Destroy (this.gameObject, lifeTime);
 		InvokeRepeating ("Disable", lifeTime, lifeTime);
 	}
 
@@ -20,7 +18,6 @@ public class Bullet : MonoBehaviour
 		this.gameObject.SetActive (false);
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
 		//transform.LookAt (direction);
@@ -38,7 +35,6 @@ public class Bullet : MonoBehaviour
 	{
 		if (collider.transform.tag == "Target")
 		{
-			//Destroy (gameObject);
 			Disable();
 			Asteroid asteroid = collider.GetComponent<Asteroid> ();
 			asteroid.Hit ();	

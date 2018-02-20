@@ -11,12 +11,18 @@ public class Asteroid : MonoBehaviour
 	public int rotationSelection;
 	public Vector3 directions;
 	public int health = 2;
-	public GameObject asteroidPrefab;
 	private bool isChild;
-	public GameObject explosionPrefab;
+	private ObjectPool asteroidPool;
+	private ObjectPool explosionPool;
 
 	void Start () 
 	{
+		asteroidPool = this.gameObject.GetComponentInParent<ObjectPool>();
+
+		GameObject ExplosionPoolObject = GameObject.Find("Explosion Pool");
+
+		explosionPool = ExplosionPoolObject.GetComponent<ObjectPool> ();
+
 		rotationSelection = Random.Range (1, 4);
 
 		if (isChild == false)
@@ -51,13 +57,16 @@ public class Asteroid : MonoBehaviour
 			{
 				CreateChildAsteroids (gameObject.transform.position, gameObject.transform.localScale);
 			}
-
-			//Debug.Log (gameObject.transform.localScale.x.ToString());
-
+				
 			Explosion (gameObject.transform.position);
 
-			Destroy (gameObject);
+			Disable ();
 		}
+	}
+
+	void Disable ()
+	{
+		this.gameObject.SetActive (false);
 	}
 
 	void CreateChildAsteroids(Vector3 position , Vector3 scale)
@@ -66,7 +75,13 @@ public class Asteroid : MonoBehaviour
 
 		for(int i = 0 ; i < NumberOfChildren ; i++)
 		{
-			GameObject asteroidObject = Instantiate (asteroidPrefab);
+			GameObject asteroidObject = asteroidPool.getPooledObject();
+
+			if (asteroidObject == null)
+			{
+				return;
+			}
+
 			asteroidObject.transform.SetParent (this.transform.parent);
 			asteroidObject.transform.position = new Vector3((position.x + Random.Range(-1 , 2)), (position.y + Random.Range(-1 , 2)) , (position.z + Random.Range(-1 , 2)));
 
@@ -82,6 +97,8 @@ public class Asteroid : MonoBehaviour
 			Asteroid asteroid = asteroidObject.GetComponent<Asteroid> ();
 			asteroid.health = 2;
 			asteroid.isChild = true;
+
+			asteroidObject.SetActive (true);
 		}
 	}
 
@@ -106,8 +123,9 @@ public class Asteroid : MonoBehaviour
 
 	void Explosion(Vector3 startPosition)
 	{
-		GameObject explosion = Instantiate (explosionPrefab);
+		GameObject explosion = explosionPool.getPooledObject();
 		explosion.transform.position = startPosition;
+		explosion.SetActive (true);
 	}
 
 	void startMoving()

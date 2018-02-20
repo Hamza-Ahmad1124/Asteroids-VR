@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour 
 {
-	public static ObjectPool objectPool;
 	public GameObject objectPrefab;
 	public List<GameObject> objectList;
-	public int amountOfPooledObjects = 20;
+	public int amountOfPooledObjects;
 
-	void Awake()
-	{
-		objectPool = this;
-	}
-
-	void Start () 
+	void Awake () 
 	{
 		objectList = new List<GameObject> ();
 
 		for (int i = 0; i < amountOfPooledObjects; i++)
 		{
 			GameObject obj = (GameObject) Instantiate(objectPrefab);
+			obj.transform.SetParent (this.gameObject.transform);
 			obj.SetActive (false);
 			objectList.Add (obj);
 		}	

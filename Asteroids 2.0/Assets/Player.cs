@@ -5,17 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour 
 {
-	public GameObject bulletPrefab;
 	public float shootingCooldown = 0.5f;
 	private float shootingTimer;
 	public int pushForce = 100 ;
-	public int NoOfPush = 0;
+	private ObjectPool bulletPool;
 
-	// Use this for initialization
 	void Start ()
-	{}
+	{
+		bulletPool = this.gameObject.GetComponent<ObjectPool> ();
+	}
 
-	// Update is called once per frame
 	void Update ()
 	{
 		shootingTimer -= Time.deltaTime;
@@ -23,19 +22,7 @@ public class Player : MonoBehaviour
 		//if (Input.GetKeyDown(KeyCode.Space) && shootingTimer <= 0f)
 		if (shootingTimer <= 0f)
 		{
-			//GameObject bulletObject = Instantiate (bulletPrefab);
-
-			RaycastHit hit;
-		
-			if (Physics.Raycast (transform.position, transform.forward * 300, out hit))
-			{
-				if (hit.transform.tag == "Target")
-				{
-					
-				}
-			}
-
-			GameObject bulletObject = ObjectPool.objectPool.getPooledObject ();
+			GameObject bulletObject = bulletPool.getPooledObject ();
 
 			if (bulletObject == null)
 			{
@@ -63,12 +50,8 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.UpArrow)) 
 		{
 			Transform parentObject = this.transform.parent;
-			//parentObject.position += transform.forward;
 
-			if (NoOfPush <= 3)
-			{
-				parentObject.GetComponent<Rigidbody>().AddForce(transform.forward * pushForce);
-			}
+			parentObject.GetComponent<Rigidbody>().AddForce(transform.forward * pushForce);
 		}
 
 		checkIfOutOfBounds ();
