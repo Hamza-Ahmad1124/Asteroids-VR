@@ -5,52 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour 
 {
-	public float shootingCooldown = 0.5f;
-	private float shootingTimer;
 	public int pushForce = 100 ;
-	private ObjectPool bulletPool;
 
 	void Start ()
-	{
-		bulletPool = this.gameObject.GetComponent<ObjectPool> ();
-	}
+	{}
 
 	void Update ()
 	{
-		shootingTimer -= Time.deltaTime;
-
-		//if (Input.GetKeyDown(KeyCode.Space) && shootingTimer <= 0f)
-		if (shootingTimer <= 0f)
-		{
-			GameObject bulletObject = bulletPool.getPooledObject ();
-
-			if (bulletObject == null)
-			{
-				return;
-			}
-
-			bulletObject.transform.SetParent (this.transform.parent);
-
-			//bulletObject.transform.LookAt (this.transform.forward);
-
-			bulletObject.transform.rotation = this.transform.rotation;
-
-			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y - 1.5f, transform.position.z);
-
-			Bullet bullet = bulletObject.GetComponent<Bullet> ();
-
-			bullet.direction = this.transform.forward;	
-
-			bulletObject.SetActive (true);
-		
-			shootingTimer = shootingCooldown;
-		}
-
-
 		if (Input.GetKeyDown (KeyCode.UpArrow)) 
 		{
 			Transform parentObject = this.transform.parent;
-
+			parentObject.GetComponent<Rigidbody> ().isKinematic = false;
 			parentObject.GetComponent<Rigidbody>().AddForce(transform.forward * pushForce);
 		}
 
