@@ -18,14 +18,14 @@ public class Bullet : MonoBehaviour
 	{
 		if (timer <= 0)
 		{
-			this.transform.parent = null;	
+			//this.transform.parent = null;	
 		}
 
 		transform.position += direction * speed * Time.deltaTime;
 
 		//transform.GetComponent<Rigidbody> ().AddForce (direction * 100);
 		//transform.Translate (direction * speed * Time.deltaTime, Space.Self);
-		//transform.position = Vector3.MoveTowards(transform.position, direction * 300 , speed * Time.deltaTime);
+	//	transform.position = Vector3.MoveTowards(transform.position, direction * 300 , speed * Time.deltaTime);
 		//transform.rotation = Quaternion.LookRotation (transform.forward);
 		//transform.rotation = Quaternion.FromToRotation(transform.forward , direction);
 		//transform.LookAt (direction);
@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
 		{
 			Destroy (gameObject);
 			Asteroid asteroid = collider.GetComponent<Asteroid> ();
-			asteroid.Hit ();	
+			//asteroid.Hit ();	
 		}
 	}
 }

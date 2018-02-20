@@ -12,16 +12,12 @@ public class Player : MonoBehaviour
 	public int NoOfPush = 0;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.DrawRay (transform.position, transform.forward * 300, Color.yellow);
-
-
-
 		shootingTimer -= Time.deltaTime;
 
 		//if (Input.GetKeyDown(KeyCode.Space) && shootingTimer <= 0f)
@@ -31,27 +27,19 @@ public class Player : MonoBehaviour
 
 			RaycastHit hit;
 		
-			if (Physics.Raycast (transform.position, transform.forward * 300, out hit))
+			if (Physics.Raycast (transform.position, transform.forward * 200, out hit))
 			{
-				Debug.Log (hit.transform.name);
-				bulletObject.transform.LookAt (hit.transform.position);
+				if (hit.transform.tag == "Target")
+				{
+					Debug.Log ("Inner" + hit.transform.name);
+				}
 			}
 
-			//bulletObject.transform.LookAt (transform.forward);
+			bulletObject.transform.LookAt (transform.forward);
+
 			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y - 1.1f, transform.position.z);
-
-			//bulletObject.transform.SetParent (this.transform.parent);
-
-			float bulletXRotation = bulletObject.transform.localEulerAngles.x;
-			float bulletYRotation = bulletObject.transform.localEulerAngles.y;
-			float bulletZRotation = bulletObject.transform.localEulerAngles.z;
-
-			bulletXRotation += transform.localEulerAngles.x;
-			bulletYRotation += transform.localEulerAngles.y;
-			bulletZRotation += transform.localEulerAngles.z;
-
-			//bulletObject.transform.localEulerAngles = new Vector3(bulletXRotation , bulletYRotation , bulletZRotation);
-
+		
+			bulletObject.transform.SetParent (this.transform.parent);
 
 			Bullet bullet = bulletObject.GetComponent<Bullet> ();
 

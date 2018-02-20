@@ -37,8 +37,8 @@ public class Asteroid : MonoBehaviour
 	void Update () 
 	{
 		CheckHealth();
-		rotation();
-		startMoving();
+		//rotation();
+		//startMoving();
 		checkIfOutOfBound ();
 	}
 
