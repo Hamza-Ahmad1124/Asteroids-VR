@@ -27,8 +27,10 @@ public class Ship : MonoBehaviour
 		float yaw = turnSpeed * Time.deltaTime * Input.GetAxis ("Yaw"); // Rotation Around Y axis
 		float roll = turnSpeed * Time.deltaTime * Input.GetAxis ("Roll"); // Rotation Around Z axis
 
-
 		transform.Rotate (-pitch , yaw , roll);
+
+		//transform.localEulerAngles += new Vector3 (-pitch , yaw , roll);
+		//transform.rotation = Quaternion.Euler (-pitch , yaw , roll) * transform.rotation;
 	}
 
 	public void Hit()

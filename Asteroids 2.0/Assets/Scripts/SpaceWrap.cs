@@ -8,11 +8,11 @@ public class SpaceWrap : MonoBehaviour
 	{
 		if (collider.transform.name == "GvrEditorEmulator")
 		{
-			//collider.transform.position *= -1;
+			collider.transform.position *= -1;
 
 			GameObject ship = GameObject.Find ("Ship");
 
-			///ship.transform.position *= -1;
+			ship.transform.position *= -1;
 		}
 
 		if (collider.transform.tag == "Bullets")

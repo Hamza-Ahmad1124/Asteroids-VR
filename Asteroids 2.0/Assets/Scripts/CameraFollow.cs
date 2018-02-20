@@ -5,22 +5,28 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
 
 	public Transform target;
-	public Vector3 velocity = new Vector3 (1, 1, 1);
-	public Vector3 defaultDistance = new Vector3 (2.7f , 4f , -13f);
-	public float smoothTime = 0.1f;
+	public Vector3 velocity = Vector3.zero;
+	public Vector3 defaultDistance = new Vector3 (0.05f , 4f , -13f);
+	public float smoothTime = 0.06f;
 
-	void Update () 
+	void LateUpdate () 
 	{
-		SmoothFollow ();
+		SmoothFollowPosition ();
+		SmoothFollowRotation ();	
 	}
 
-	void SmoothFollow()
+	void SmoothFollowPosition()
 	{
 		Vector3 destinationPosition = target.position + (target.rotation * defaultDistance);
 		Vector3 currentPosition = Vector3.SmoothDamp (this.transform.position, destinationPosition , ref velocity, smoothTime , 500f , Time.deltaTime);
 		this.transform.position = currentPosition;
+	}
+
+	void SmoothFollowRotation()
+	{
+		this.transform.rotation = target.rotation;
 
 		//this.transform.LookAt (target , target.up);
-		this.transform.rotation = target.rotation;
+		//this.transform.rotation = Quaternion.Slerp (this.transform.rotation , target.rotation , 0.5f);
 	}
 }
