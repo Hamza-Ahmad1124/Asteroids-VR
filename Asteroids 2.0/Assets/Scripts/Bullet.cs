@@ -11,14 +11,6 @@ public class Bullet : MonoBehaviour
 	void Update () 
 	{
 		transform.position += direction * speed * Time.deltaTime;
-
-		//transform.LookAt (direction);
-		//transform.GetComponent<Rigidbody> ().AddForce (direction * 100);
-		//transform.Translate (direction * speed * Time.deltaTime, Space.Self);
-	   	//transform.position = Vector3.MoveTowards(transform.position, direction * 300 , speed * Time.deltaTime);
-		//transform.rotation = Quaternion.LookRotation (transform.forward);
-		//transform.rotation = Quaternion.FromToRotation(transform.forward , direction);
-		//transform.LookAt (direction);
 	}
 
 	void OnTriggerEnter(Collider collider)
@@ -27,7 +19,7 @@ public class Bullet : MonoBehaviour
 		{
 			Disable();
 			Asteroid asteroid = collider.GetComponent<Asteroid> ();
-			//asteroid.Hit ();	
+			asteroid.Hit ();
 		}
 	}
 

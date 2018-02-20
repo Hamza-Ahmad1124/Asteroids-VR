@@ -5,12 +5,13 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour 
 {
 	public float movementSpeed = 0.3f;
-	public float minimumDistance = 80f;
-	public float minimumHeight = 80f;
-	public float rotatingSpeed = 1f;
-	public int rotationSelection;
-	public Vector3 directions;
+	public float minimumDistance = 300f;
+	public float minimumHeight = 300f;
+	public float rotatingSpeed = 15f;
 	public int health = 2;
+
+	private int rotationSelection;
+	private Vector3 directions;
 	private bool isChild;
 	private ObjectPool asteroidPool;
 	private ObjectPool explosionPool;
@@ -42,16 +43,15 @@ public class Asteroid : MonoBehaviour
 
 	void Update () 
 	{
-		CheckHealth();
-		//rotation();
-		//startMoving();
+		rotation();
+		startMoving();
 	}
 
 	public void CheckHealth()
 	{
 		if (health <= 0)
 		{
-			if (gameObject.transform.localScale.x >= 4f)
+			if (gameObject.transform.localScale.x >= 10f)
 			{
 				CreateChildAsteroids (gameObject.transform.position, gameObject.transform.localScale);
 			}
@@ -69,7 +69,7 @@ public class Asteroid : MonoBehaviour
 
 	void CreateChildAsteroids(Vector3 position , Vector3 scale)
 	{
-		int NumberOfChildren = Random.Range (2, 5);
+		int NumberOfChildren = Random.Range (2, 6);
 
 		for(int i = 0 ; i < NumberOfChildren ; i++)
 		{
@@ -81,14 +81,9 @@ public class Asteroid : MonoBehaviour
 			}
 
 			asteroidObject.transform.SetParent (this.transform.parent);
-			asteroidObject.transform.position = new Vector3((position.x + Random.Range(-1 , 2)), (position.y + Random.Range(-1 , 2)) , (position.z + Random.Range(-1 , 2)));
+			asteroidObject.transform.position = new Vector3((position.x + Random.Range(-2 , 3)), (position.y + Random.Range(-2 , 3)) , (position.z + Random.Range(-2 , 3)));
 
-			float newScale = 0f;
-
-			while(newScale <= 2f)
-			{
-				newScale = Random.Range(1f , ((scale.x / 2f) + 1));
-			}
+			float newScale = Random.Range(5f , ((scale.x / 1.5f) + 1));
 
 			asteroidObject.transform.localScale = new Vector3 (newScale, newScale, newScale);
 
@@ -104,18 +99,24 @@ public class Asteroid : MonoBehaviour
 	{
 		if (rotationSelection == 1)
 		{
-			transform.rotation = Quaternion.Euler (rotatingSpeed, 0, 0) * transform.rotation;
-	//		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + rotatingSpeed , 0 , 0);
+			transform.RotateAround (this.transform.position, Vector3.right, rotatingSpeed * Time.deltaTime);
+
+			//transform.rotation = Quaternion.Euler (rotatingSpeed, 0, 0) * transform.rotation;
+			//transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + rotatingSpeed , 0 , 0);
 		}
 
 		else if (rotationSelection == 2)
 		{
-			transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + rotatingSpeed, 0);
+			transform.RotateAround (this.transform.position, Vector3.up, rotatingSpeed * Time.deltaTime);
+
+			//transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + rotatingSpeed, 0);
 		}
 
 		else if (rotationSelection == 3)
 		{
-			transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z + rotatingSpeed);
+			transform.RotateAround (this.transform.position, Vector3.forward, rotatingSpeed * Time.deltaTime);
+
+			//transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z + rotatingSpeed);
 		}
 	}
 
@@ -135,6 +136,8 @@ public class Asteroid : MonoBehaviour
 	public void Hit()
 	{
 		health--;
+
+		CheckHealth();
 	}
 
 	void setDirections()

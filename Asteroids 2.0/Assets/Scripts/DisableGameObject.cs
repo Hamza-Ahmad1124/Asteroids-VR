@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableGameObject : MonoBehaviour {
-
-	public float lifeTime = 3f;
+public class DisableGameObject : MonoBehaviour 
+{
+	public float lifeTime = 4f;
 
 	void Start () 
 	{
-		InvokeRepeating ("Disable", lifeTime, lifeTime);	
+		Invoke ("Disable", lifeTime);	
 	}
 	
 	void Disable()

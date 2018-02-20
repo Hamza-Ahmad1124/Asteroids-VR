@@ -12,8 +12,11 @@ public class Ship : MonoBehaviour
 	
 	void Update () 
 	{
-		Turn ();
-		Thrust ();
+		if ((Input.GetAxis ("Vertical") != 0) || (Input.GetAxis ("Pitch") != 0) || (Input.GetAxis ("Yaw") != 0) || (Input.GetAxis ("Roll") != 0))
+		{
+			Turn ();
+			Thrust ();	
+		}
 	}
 
 	void Thrust()
@@ -28,9 +31,6 @@ public class Ship : MonoBehaviour
 		float roll = turnSpeed * Time.deltaTime * Input.GetAxis ("Roll"); // Rotation Around Z axis
 
 		transform.Rotate (-pitch , yaw , roll);
-
-		//transform.localEulerAngles += new Vector3 (-pitch , yaw , roll);
-		//transform.rotation = Quaternion.Euler (-pitch , yaw , roll) * transform.rotation;
 	}
 
 	public void Hit()
@@ -55,7 +55,11 @@ public class Ship : MonoBehaviour
 			Hit();
 
 			ContactPoint contact = collision.contacts[0];
-			GameObject collisionExplode = Instantiate (collisionExplosion, contact.point, Quaternion.identity, transform) as GameObject;
+
+			GameObject collisionExplode = (GameObject)Instantiate (collisionExplosion);
+			collisionExplode.transform.position = contact.point;
+			collisionExplode.transform.SetParent (this.transform);
+
 			Destroy (collisionExplode, 6f);
 		}
 	}

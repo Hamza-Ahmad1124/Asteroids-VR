@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnBullets : MonoBehaviour {
-
-	public float shootingCooldown = 0.5f;
-	private float shootingTimer;
+public class SpawnBullets : MonoBehaviour 
+{
 	private ObjectPool bulletPool;
 
 	void Start () 
@@ -15,9 +13,6 @@ public class SpawnBullets : MonoBehaviour {
 	
 	void Update () 
 	{
-		//shootingTimer -= Time.deltaTime;
-		//if (shootingTimer <= 0f)
-
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			GameObject bulletObject = bulletPool.getPooledObject ();
@@ -29,10 +24,6 @@ public class SpawnBullets : MonoBehaviour {
 
 			bulletObject.transform.parent = null;
 
-			//bulletObject.transform.SetParent (GameObject.Find("GvrEditorEmulator").transform);
-
-//			bulletObject.transform.LookAt (this.transform.forward);
-
 			bulletObject.transform.rotation = this.transform.rotation;
 
 			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z);
@@ -42,8 +33,6 @@ public class SpawnBullets : MonoBehaviour {
 			bullet.direction = this.transform.forward;	
 
 			bulletObject.SetActive (true);
-
-			//shootingTimer = shootingCooldown;
 		}
 	}
 }
