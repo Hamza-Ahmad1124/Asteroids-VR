@@ -17,9 +17,9 @@ public class Asteroid : MonoBehaviour
 	private ObjectPool asteroidPool;
 	private ObjectPool explosionPool;
 
-	public Text scoreText;
+	private Text scoreText;
 
-	private int score;
+	private static int score;
 
 	void Start () 
 	{
@@ -170,7 +170,7 @@ public class Asteroid : MonoBehaviour
 
 	private void SetAndDisplayScore()
 	{
-		score = score + (int) this.transform.lossyScale.x;
+		score = score + (int) this.transform.localScale.x;
 
 		scoreText.text = "SCORE: " + score;
 	}
