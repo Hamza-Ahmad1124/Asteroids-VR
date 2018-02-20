@@ -8,21 +8,11 @@ public class Bullet : MonoBehaviour
 	public float speed = 100f;
 	public float lifeTime = 10f;
 
-	void Start ()
-	{
-		InvokeRepeating ("Disable", lifeTime, lifeTime);
-	}
-
-	void Disable()
-	{
-		this.gameObject.SetActive (false);
-	}
-
 	void Update () 
 	{
-		//transform.LookAt (direction);
 		transform.position += direction * speed * Time.deltaTime;
 
+		//transform.LookAt (direction);
 		//transform.GetComponent<Rigidbody> ().AddForce (direction * 100);
 		//transform.Translate (direction * speed * Time.deltaTime, Space.Self);
 	   	//transform.position = Vector3.MoveTowards(transform.position, direction * 300 , speed * Time.deltaTime);
@@ -37,7 +27,12 @@ public class Bullet : MonoBehaviour
 		{
 			Disable();
 			Asteroid asteroid = collider.GetComponent<Asteroid> ();
-			asteroid.Hit ();	
+			//asteroid.Hit ();	
 		}
+	}
+
+	public void Disable()
+	{
+		this.gameObject.SetActive (false);
 	}
 }

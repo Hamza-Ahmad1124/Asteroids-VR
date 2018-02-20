@@ -8,19 +8,17 @@ public class SpawnBullets : MonoBehaviour {
 	private float shootingTimer;
 	private ObjectPool bulletPool;
 
-	// Use this for initialization
 	void Start () 
 	{
 		bulletPool = this.gameObject.GetComponentInParent<ObjectPool> ();
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
-		shootingTimer -= Time.deltaTime;
+		//shootingTimer -= Time.deltaTime;
+		//if (shootingTimer <= 0f)
 
-		//if (Input.GetKeyDown(KeyCode.Space) && shootingTimer <= 0f)
-		if (shootingTimer <= 0f)
+		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			GameObject bulletObject = bulletPool.getPooledObject ();
 
@@ -33,7 +31,7 @@ public class SpawnBullets : MonoBehaviour {
 
 			//bulletObject.transform.SetParent (GameObject.Find("GvrEditorEmulator").transform);
 
-			//bulletObject.transform.LookAt (this.transform.forward);
+//			bulletObject.transform.LookAt (this.transform.forward);
 
 			bulletObject.transform.rotation = this.transform.rotation;
 
@@ -45,7 +43,7 @@ public class SpawnBullets : MonoBehaviour {
 
 			bulletObject.SetActive (true);
 
-			shootingTimer = shootingCooldown;
+			//shootingTimer = shootingCooldown;
 		}
 	}
 }

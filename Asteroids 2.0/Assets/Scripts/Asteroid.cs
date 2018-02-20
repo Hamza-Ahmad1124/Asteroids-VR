@@ -35,18 +35,16 @@ public class Asteroid : MonoBehaviour
 			);
 		}
 
-		//transform.rotation = Random.rotation;
+		transform.rotation = Random.rotation;
 
 		setDirections ();
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
 		CheckHealth();
 		//rotation();
 		//startMoving();
-		checkIfOutOfBound ();
 	}
 
 	public void CheckHealth()
@@ -132,47 +130,6 @@ public class Asteroid : MonoBehaviour
 	{
 		//GetComponent<Rigidbody>().AddForce(directions,);
 		transform.position += directions;
-	}
-
-	void checkIfOutOfBound()
-	{
-		float Xposition = transform.position.x;
-		float Yposition = transform.position.y;
-		float Zposition = transform.position.z;
-
-		if (transform.position.x >= 100)
-		{
-			Xposition = -100;
-		}
-
-		else if (transform.position.x <= -100)
-		{
-			Xposition = 100;
-		}
-
-		if (transform.position.y >= 100)
-		{
-			Yposition = -100;
-		}
-
-		else if (transform.position.y <= -100)
-		{
-			Yposition = 100;
-		}
-
-		if (transform.position.z >= 100)
-		{
-			Zposition = -100;
-		}
-
-		else if (transform.position.z <= -100)
-		{
-			Zposition = 100;
-		}
-
-		Vector3 vectorPosition = new Vector3 (Xposition, Yposition, Zposition);
-
-		transform.position = vectorPosition;
 	}
 
 	public void Hit()

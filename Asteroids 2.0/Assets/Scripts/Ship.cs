@@ -9,14 +9,7 @@ public class Ship : MonoBehaviour
 	public float turnSpeed = 50f;
 	public int health = 5;
 	public GameObject collisionExplosion;
-
-	// Use this for initialization
-	void Start () 
-	{
-		
-	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
 		Turn ();
