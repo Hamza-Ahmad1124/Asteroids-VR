@@ -29,7 +29,9 @@ public class SpawnBullets : MonoBehaviour {
 				return;
 			}
 
-			bulletObject.transform.SetParent (this.transform.parent.transform.parent.transform.parent);
+			bulletObject.transform.parent = null;
+
+			//bulletObject.transform.SetParent (GameObject.Find("GvrEditorEmulator").transform);
 
 			//bulletObject.transform.LookAt (this.transform.forward);
 

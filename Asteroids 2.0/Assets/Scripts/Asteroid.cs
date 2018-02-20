@@ -45,7 +45,7 @@ public class Asteroid : MonoBehaviour
 	{
 		CheckHealth();
 		//rotation();
-		startMoving();
+		//startMoving();
 		checkIfOutOfBound ();
 	}
 

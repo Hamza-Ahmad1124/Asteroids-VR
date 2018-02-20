@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
 		{
 			Disable();
 			Asteroid asteroid = collider.GetComponent<Asteroid> ();
-			//asteroid.Hit ();	
+			asteroid.Hit ();	
 		}
 	}
 }
