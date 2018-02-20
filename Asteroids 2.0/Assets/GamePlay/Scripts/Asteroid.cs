@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Asteroid : MonoBehaviour 
 {
@@ -16,8 +17,14 @@ public class Asteroid : MonoBehaviour
 	private ObjectPool asteroidPool;
 	private ObjectPool explosionPool;
 
+	public Text scoreText;
+
+	private int score;
+
 	void Start () 
 	{
+		scoreText = GameObject.Find ("Score").GetComponent<Text>();
+
 		asteroidPool = this.gameObject.GetComponentInParent<ObjectPool>();
 
 		GameObject ExplosionPoolObject = GameObject.Find("Explosion Pool");
@@ -64,6 +71,8 @@ public class Asteroid : MonoBehaviour
 
 	void Disable ()
 	{
+		SetAndDisplayScore ();
+
 		this.gameObject.SetActive (false);
 	}
 
@@ -123,6 +132,13 @@ public class Asteroid : MonoBehaviour
 	void Explosion(Vector3 startPosition)
 	{
 		GameObject explosion = explosionPool.getPooledObject();
+
+		if (explosion == null)
+		{
+			return;
+		}
+
+		explosion.AddComponent<DisableGameObject>();
 		explosion.transform.position = startPosition;
 		explosion.SetActive (true);
 	}
@@ -150,5 +166,12 @@ public class Asteroid : MonoBehaviour
 			directions.y = Random.Range (-1f, 1.1f) * movementSpeed;
 			directions.z = Random.Range (-1f, 1.1f) * movementSpeed;
 		}
+	}
+
+	private void SetAndDisplayScore()
+	{
+		score = score + (int) this.transform.lossyScale.x;
+
+		scoreText.text = "SCORE: " + score;
 	}
 }

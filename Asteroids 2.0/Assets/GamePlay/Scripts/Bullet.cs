@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
 		if (collider.transform.tag == "Target")
 		{
 			Disable();
+
 			Asteroid asteroid = collider.GetComponent<Asteroid> ();
 			asteroid.Hit ();
 		}
