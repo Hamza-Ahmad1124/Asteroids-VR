@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 	public Vector3 direction;
 	public float speed = 30f;
 	public float lifeTime = 10f;
+	public int timer = 1;
 
 	// Use this for initialization
 	void Start ()
@@ -15,6 +16,11 @@ public class Bullet : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if (timer <= 0)
+		{
+			this.transform.parent = null;	
+		}
+
 		transform.position += direction * speed * Time.deltaTime;
 
 		//transform.GetComponent<Rigidbody> ().AddForce (direction * 100);
@@ -30,6 +36,8 @@ public class Bullet : MonoBehaviour
 		{
 			Destroy (gameObject);
 		}
+
+		timer--;
 	}
 
 	void OnTriggerEnter(Collider collider)

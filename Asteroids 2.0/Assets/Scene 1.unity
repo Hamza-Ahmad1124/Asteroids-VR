@@ -148,7 +148,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -518,7 +518,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c299b2ca9e61a489f64576951c9352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1143231133613674, guid: 8d8ba300a2f628e499857342198f5bfd,
+  bulletPrefab: {fileID: 1407587113325460, guid: 8d8ba300a2f628e499857342198f5bfd,
     type: 2}
   shootingCooldown: 0.5
   pushForce: 100

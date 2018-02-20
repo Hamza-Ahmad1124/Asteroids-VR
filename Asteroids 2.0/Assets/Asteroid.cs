@@ -38,7 +38,7 @@ public class Asteroid : MonoBehaviour
 	{
 		CheckHealth();
 		rotation();
-		//startMoving();
+		startMoving();
 		checkIfOutOfBound ();
 	}
 
@@ -51,7 +51,7 @@ public class Asteroid : MonoBehaviour
 				CreateChildAsteroids (gameObject.transform.position, gameObject.transform.localScale);
 			}
 
-			Debug.Log (gameObject.transform.localScale.x.ToString());
+			//Debug.Log (gameObject.transform.localScale.x.ToString());
 
 			Destroy (gameObject);
 		}

@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		Debug.DrawRay (transform.position, transform.forward * 300, Color.yellow);
+
+
+
 		shootingTimer -= Time.deltaTime;
 
 		//if (Input.GetKeyDown(KeyCode.Space) && shootingTimer <= 0f)
@@ -25,6 +29,15 @@ public class Player : MonoBehaviour
 		{
 			GameObject bulletObject = Instantiate (bulletPrefab);
 
+			RaycastHit hit;
+		
+			if (Physics.Raycast (transform.position, transform.forward * 300, out hit))
+			{
+				Debug.Log (hit.transform.name);
+				bulletObject.transform.LookAt (hit.transform.position);
+			}
+
+			//bulletObject.transform.LookAt (transform.forward);
 			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y - 1.1f, transform.position.z);
 
 			//bulletObject.transform.SetParent (this.transform.parent);
@@ -37,7 +50,8 @@ public class Player : MonoBehaviour
 			bulletYRotation += transform.localEulerAngles.y;
 			bulletZRotation += transform.localEulerAngles.z;
 
-			bulletObject.transform.localEulerAngles = new Vector3(bulletXRotation , bulletYRotation , bulletZRotation);
+			//bulletObject.transform.localEulerAngles = new Vector3(bulletXRotation , bulletYRotation , bulletZRotation);
+
 
 			Bullet bullet = bulletObject.GetComponent<Bullet> ();
 
