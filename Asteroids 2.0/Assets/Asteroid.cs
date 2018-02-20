@@ -13,6 +13,7 @@ public class Asteroid : MonoBehaviour
 	public int health = 2;
 	public GameObject asteroidPrefab;
 	private bool isChild;
+	public GameObject explosionPrefab;
 
 	void Start () 
 	{
@@ -52,6 +53,8 @@ public class Asteroid : MonoBehaviour
 			}
 
 			//Debug.Log (gameObject.transform.localScale.x.ToString());
+
+			Explosion (gameObject.transform.position);
 
 			Destroy (gameObject);
 		}
@@ -99,6 +102,12 @@ public class Asteroid : MonoBehaviour
 		{
 			transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z + rotatingSpeed);
 		}
+	}
+
+	void Explosion(Vector3 startPosition)
+	{
+		GameObject explosion = Instantiate (explosionPrefab);
+		explosion.transform.position = startPosition;
 	}
 
 	void startMoving()

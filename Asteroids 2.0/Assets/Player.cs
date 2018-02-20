@@ -23,27 +23,38 @@ public class Player : MonoBehaviour
 		//if (Input.GetKeyDown(KeyCode.Space) && shootingTimer <= 0f)
 		if (shootingTimer <= 0f)
 		{
-			GameObject bulletObject = Instantiate (bulletPrefab);
+			//GameObject bulletObject = Instantiate (bulletPrefab);
 
 			RaycastHit hit;
 		
-			if (Physics.Raycast (transform.position, transform.forward * 200, out hit))
+			if (Physics.Raycast (transform.position, transform.forward * 300, out hit))
 			{
 				if (hit.transform.tag == "Target")
 				{
-					Debug.Log ("Inner" + hit.transform.name);
+					
 				}
 			}
 
-			bulletObject.transform.LookAt (transform.forward);
+			GameObject bulletObject = ObjectPool.objectPool.getPooledObject ();
 
-			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y - 1.1f, transform.position.z);
-		
+			if (bulletObject == null)
+			{
+				return;
+			}
+
 			bulletObject.transform.SetParent (this.transform.parent);
+
+			//bulletObject.transform.LookAt (this.transform.forward);
+
+			bulletObject.transform.rotation = this.transform.rotation;
+
+			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y - 1.5f, transform.position.z);
 
 			Bullet bullet = bulletObject.GetComponent<Bullet> ();
 
-			bullet.direction = this.transform.forward;
+			bullet.direction = this.transform.forward;	
+
+			bulletObject.SetActive (true);
 		
 			shootingTimer = shootingCooldown;
 		}

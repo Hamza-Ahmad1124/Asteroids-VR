@@ -246,6 +246,8 @@ MonoBehaviour:
   directions: {x: 0, y: 0, z: 0}
   health: 2
   asteroidPrefab: {fileID: 1526896397395030}
+  explosionPrefab: {fileID: 1774229582244652, guid: 6f8cb56c26198ac41a2b1c05c9047e1c,
+    type: 2}
 --- !u!135 &135777603421640406
 SphereCollider:
   m_ObjectHideFlags: 1
