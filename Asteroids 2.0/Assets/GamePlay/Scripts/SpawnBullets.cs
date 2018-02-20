@@ -26,7 +26,7 @@ public class SpawnBullets : MonoBehaviour
 
 			bulletObject.transform.rotation = this.transform.rotation;
 
-			bulletObject.transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z);
+			bulletObject.transform.position = this.transform.position;
 
 			Bullet bullet = bulletObject.GetComponent<Bullet> ();
 

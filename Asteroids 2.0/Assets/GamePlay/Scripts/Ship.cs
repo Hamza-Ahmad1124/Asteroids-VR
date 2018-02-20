@@ -14,21 +14,34 @@ public class Ship : MonoBehaviour
 
 	public GameObject shipExplosion;
 
+	private GameObject booster;
+
 	private static bool isHit = false;   // To Stop continuous hit
 
 	public Image healthBar;
 
 	void Start()
 	{
+		booster = GameObject.Find ("Engine Fire");
+
 		startHealth = health;
 	}
 
 	void Update () 
 	{
-		if ((Input.GetAxis ("Vertical") != 0) || (Input.GetAxis ("Pitch") != 0) || (Input.GetAxis ("Yaw") != 0) || (Input.GetAxis ("Roll") != 0))
+		if ((Input.GetAxis ("Vertical") != 0))
+		{
+			Thrust ();	
+		} 
+
+		else
+		{
+			booster.SetActive (false);
+		}
+
+		if((Input.GetAxis ("Pitch") != 0) || (Input.GetAxis ("Yaw") != 0) || (Input.GetAxis ("Roll") != 0))
 		{
 			Turn ();
-			Thrust ();	
 		}
 
 		if (isHit)
@@ -39,6 +52,8 @@ public class Ship : MonoBehaviour
 
 	void Thrust()
 	{
+		booster.SetActive (true);
+
 		transform.position += transform.forward * movementSpeed * Time.deltaTime * Input.GetAxis ("Vertical");
 	}
 
@@ -64,10 +79,9 @@ public class Ship : MonoBehaviour
 			GameObject finalExplosion = (GameObject)Instantiate (shipExplosion);
 			finalExplosion.transform.position = this.transform.position;
 
-
-
-			Destroy (finalExplosion, 6f);
+			Destroy (finalExplosion, 5f);
 			Invoke ("LoadCurrentScene", 6f);
+
 			this.gameObject.SetActive (false);
 		}
 	}
