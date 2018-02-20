@@ -35,7 +35,7 @@ public class Asteroid : MonoBehaviour
 
 		if (isChild == false)
 		{
-			while (transform.position.x < 100 || transform.position.x > -100)
+			//while (transform.position.x < 100 && transform.position.x > -100)
 			{
 				transform.position = new Vector3 
 				(

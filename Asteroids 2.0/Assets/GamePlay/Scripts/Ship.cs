@@ -12,6 +12,8 @@ public class Ship : MonoBehaviour
 	private float startHealth;
 	public GameObject collisionExplosion;
 
+	public GameObject shipExplosion;
+
 	private static bool isHit = false;   // To Stop continuous hit
 
 	public Image healthBar;
@@ -31,7 +33,7 @@ public class Ship : MonoBehaviour
 
 		if (isHit)
 		{
-			Invoke ("ResetIsHit", 2f);
+			Invoke ("ResetIsHit", 1f);
 		}
 	}
 
@@ -55,9 +57,18 @@ public class Ship : MonoBehaviour
 
 		healthBar.fillAmount = health / startHealth;
 
+		Debug.Log (health.ToString ());
+
 		if (health <= 0f)
 		{
-			LoadCurrentScene ();
+			GameObject finalExplosion = (GameObject)Instantiate (shipExplosion);
+			finalExplosion.transform.position = this.transform.position;
+
+
+
+			Destroy (finalExplosion, 6f);
+			Invoke ("LoadCurrentScene", 6f);
+			this.gameObject.SetActive (false);
 		}
 	}
 

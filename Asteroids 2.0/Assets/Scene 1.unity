@@ -1589,7 +1589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &515036922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1785,7 +1785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &591862216
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2971,6 +2971,7 @@ MonoBehaviour:
   health: 5
   collisionExplosion: {fileID: 1140327550920992, guid: 45233fe295d76594c85b86c7b25127ea,
     type: 2}
+  shipExplosion: {fileID: 0}
   healthBar: {fileID: 914369261}
 --- !u!54 &1054617905
 Rigidbody:
@@ -3318,7 +3319,7 @@ RectTransform:
   m_Children:
   - {fileID: 2135754438}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3498,7 +3499,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417721391
 GameObject:
@@ -4381,15 +4382,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012575093128, guid: d39401e2891b1e4439d7839a3a24b3f6, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012575093128, guid: d39401e2891b1e4439d7839a3a24b3f6, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012575093128, guid: d39401e2891b1e4439d7839a3a24b3f6, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012575093128, guid: d39401e2891b1e4439d7839a3a24b3f6, type: 2}
       propertyPath: m_LocalRotation.w
@@ -4397,7 +4398,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012575093128, guid: d39401e2891b1e4439d7839a3a24b3f6, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4000012575093128, guid: d39401e2891b1e4439d7839a3a24b3f6, type: 2}
       propertyPath: m_LocalScale.x
@@ -4470,6 +4471,7 @@ MonoBehaviour:
   health: 5
   collisionExplosion: {fileID: 1140327550920992, guid: 45233fe295d76594c85b86c7b25127ea,
     type: 2}
+  shipExplosion: {fileID: 100006, guid: 6aea392f353e04156a230db0fba22230, type: 2}
   healthBar: {fileID: 914369261}
 --- !u!114 &1699413424
 MonoBehaviour:
@@ -4846,8 +4848,8 @@ MonoBehaviour:
   movementSpeed: 100
   turnSpeed: 50
   health: 5
-  collisionExplosion: {fileID: 1140327550920992, guid: 45233fe295d76594c85b86c7b25127ea,
-    type: 2}
+  collisionExplosion: {fileID: 0}
+  shipExplosion: {fileID: 100006, guid: 6aea392f353e04156a230db0fba22230, type: 2}
   healthBar: {fileID: 914369261}
 --- !u!4 &1786560539 stripped
 Transform:
