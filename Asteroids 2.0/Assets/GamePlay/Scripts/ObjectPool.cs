@@ -33,4 +33,17 @@ public class ObjectPool : MonoBehaviour
 
 		return null;
 	}
+
+	public bool AreAllObjectsInActive() // Are All Objects InActive ?
+	{
+		for (int i = 0; i < amountOfPooledObjects; i++)
+		{
+			if ((objectList [i].activeInHierarchy))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 }

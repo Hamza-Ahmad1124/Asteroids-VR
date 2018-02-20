@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 
 public class Ship : MonoBehaviour 
 {
 	public float movementSpeed = 100f;
 	public float turnSpeed = 50f;
-	public int health = 5;
+	public float health = 5f;
+	private float startHealth;
 	public GameObject collisionExplosion;
-	
+
+	public Image healthBar;
+
+	void Start()
+	{
+		startHealth = health;
+	}
+
 	void Update () 
 	{
 		if ((Input.GetAxis ("Vertical") != 0) || (Input.GetAxis ("Pitch") != 0) || (Input.GetAxis ("Yaw") != 0) || (Input.GetAxis ("Roll") != 0))
@@ -37,7 +46,9 @@ public class Ship : MonoBehaviour
 	{
 		health--;
 
-		if (health <= 0)
+		healthBar.fillAmount = health / startHealth;
+
+		if (health <= 0f)
 		{
 			LoadCurrentScene ();
 		}
@@ -45,7 +56,7 @@ public class Ship : MonoBehaviour
 
 	private void LoadCurrentScene()
 	{
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
 	void OnCollisionEnter(Collision collision)
