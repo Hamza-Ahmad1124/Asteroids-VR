@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Asteroid : MonoBehaviour 
 {
-	public float movementSpeed = 0.3f;
-	public float minimumDistance = 300f;
-	public float minimumHeight = 300f;
+	public float movementSpeed = 1f;
+	public float minimumDistance = 800f;
+	public float minimumHeight = 800f;
 	public float rotatingSpeed = 15f;
 	public int health = 2;
 
@@ -35,12 +35,15 @@ public class Asteroid : MonoBehaviour
 
 		if (isChild == false)
 		{
-			transform.position = new Vector3 
-			(
-				Random.Range(-minimumDistance, minimumDistance),
-				Random.Range(-minimumHeight, minimumHeight),
-				Random.Range(-minimumDistance, minimumDistance)
-			);
+			while (transform.position.x < 100 || transform.position.x > -100)
+			{
+				transform.position = new Vector3 
+				(
+					Random.Range(-minimumDistance, minimumDistance),
+					Random.Range(-minimumHeight, minimumHeight),
+					Random.Range(-minimumDistance, minimumDistance)
+				);
+			}
 		}
 
 		transform.rotation = Random.rotation;

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour 
 {
-	public GameObject objectPrefab;
+	public List<GameObject> objectPrefab;
 	public List<GameObject> objectList;
 	public int amountOfPooledObjects;
+
+	public bool asteroids = false;
 
 	void Awake () 
 	{
@@ -14,7 +16,18 @@ public class ObjectPool : MonoBehaviour
 
 		for (int i = 0; i < amountOfPooledObjects; i++)
 		{
-			GameObject obj = (GameObject) Instantiate(objectPrefab);
+			GameObject obj ;
+
+			if (asteroids)
+			{
+				obj = (GameObject)Instantiate (objectPrefab[Mathf.RoundToInt(Random.Range(0f , 2.5f))]);
+			} 
+
+			else
+			{
+				obj = (GameObject) Instantiate(objectPrefab[0]);	
+			}
+
 			obj.transform.SetParent (this.gameObject.transform);
 			obj.SetActive (false);
 			objectList.Add (obj);

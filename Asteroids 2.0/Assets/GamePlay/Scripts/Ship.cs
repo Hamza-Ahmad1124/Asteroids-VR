@@ -12,6 +12,8 @@ public class Ship : MonoBehaviour
 	private float startHealth;
 	public GameObject collisionExplosion;
 
+	private static bool isHit = false;   // To Stop continuous hit
+
 	public Image healthBar;
 
 	void Start()
@@ -25,6 +27,11 @@ public class Ship : MonoBehaviour
 		{
 			Turn ();
 			Thrust ();	
+		}
+
+		if (isHit)
+		{
+			Invoke ("ResetIsHit", 2f);
 		}
 	}
 
@@ -63,7 +70,19 @@ public class Ship : MonoBehaviour
 	{
 		if (collision.transform.tag == "Target")
 		{
-			Hit();
+			Debug.Log (collision.transform.name);
+
+			if (isHit)
+			{
+				return;
+			} 
+
+			else
+			{
+				isHit = true;
+
+				Hit ();
+			}
 
 			ContactPoint contact = collision.contacts[0];
 
@@ -73,5 +92,10 @@ public class Ship : MonoBehaviour
 
 			Destroy (collisionExplode, 6f);
 		}
+	}
+
+	void ResetIsHit()
+	{
+		isHit = false;
 	}
 }
