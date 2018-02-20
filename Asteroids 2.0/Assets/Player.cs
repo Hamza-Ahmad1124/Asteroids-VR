@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour 
 {
 	public int pushForce = 100 ;
+	public int health = 5;
 
 	void Start ()
 	{}
@@ -19,6 +21,16 @@ public class Player : MonoBehaviour
 		}
 
 		checkIfOutOfBounds ();
+	}
+
+	public void hit()
+	{
+		health--;
+
+		if (health == 0)
+		{
+			loadScene();
+		}
 	}
 
 	void checkIfOutOfBounds()
@@ -62,5 +74,10 @@ public class Player : MonoBehaviour
 		Vector3 vectorPosition = new Vector3 (Xposition, Yposition, Zposition);
 
 		parentObject.position = vectorPosition;
+	}
+
+	public void loadScene()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
