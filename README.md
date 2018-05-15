@@ -1,8 +1,9 @@
-Asteroids-VR
+# Asteroids-VR
+
 A modern adaption of the classic Asteroids game, made in 3D and VR supported.The game is made in a 3D environment using unity, which tests the user’s brain reflexes and ensures an everlasting VR experience. The intention is to create a VR based space environment with some obstacles to shoot.
 The main objective of this project is entertainment along with giving a space like experience. This game can be inspiring for the players to study and explore more about space.
 
-Following steps are taken for the development of this game:
+### Following steps are taken for the development of this game:
 1.	The functionality of each Game Objects was defined and was later implemented accordingly.
 
 2.	Initially Basic assets were used that were provided by the Unity Editor to achieve main functionality.
